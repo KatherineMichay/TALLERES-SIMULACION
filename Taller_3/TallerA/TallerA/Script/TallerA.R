@@ -1,5 +1,36 @@
 ### Ejercicio 8:
 
+###Literal a)
+#Tomemos p=m 
+#1: c y m son primos relativos
+res<-  mGCD(c(1,2048))
+res
+###2:a-1 es multiplo de todos los factores primos de m
+b<-65-1
+primeFactors(2048)
+d<- b %% 2
+d
+###3.si m es múltiplo de 4, entonces a-1 lo a de ser
+m<-2048 %% 4
+a<-(65-1) %% 4
+#Con lo que podemos concluir que es de ciclo máximo
+
+### Literal b)
+######################
+
+source("TallerA/TallerA/Material/RANDC.R")   # Cargar RANDC.r
+x<- initRANDC(semilla=100,a=65,c=1,m=2048)
+nsim <- 1000
+u <- RANDCN(nsim)  # Generar
+u
+source("TallerA/TallerA/Material/cpu.time.R")
+cpu.time(u,total = TRUE)
+
+hist(u, freq = FALSE)
+abline(h = 1)   
+
+ks.test(u, "punif", 0, 1)
+
 ### Literal c):
 
 source("TallerA/TallerA/Material/RANDC.r") # Se abre el archivo RANDC

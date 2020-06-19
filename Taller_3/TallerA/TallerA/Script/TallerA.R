@@ -1,5 +1,20 @@
 ### Ejercicio 8:
 
+#Tomemos p=m 
+#1: c y m son primos relativos
+res<-  mGCD(c(1,2048))
+res
+###2:a-1 es multiplo de todos los factores primos de m
+b<-65-1
+primeFactors(2048)
+d<- b %% 2
+d
+###3.si m es múltiplo de 4, entonces a-1 lo a de ser
+m<-2048 %% 4
+a<-(65-1) %% 4
+#Con lo que podemos concluir que es de ciclo máximo
+
+
 ### Literal c):
 
 source("TallerA/TallerA/Material/RANDC.r") # Se abre el archivo RANDC

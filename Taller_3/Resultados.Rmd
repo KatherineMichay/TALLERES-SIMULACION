@@ -1,0 +1,90 @@
+---
+title: "Taller 3"
+author: "Grupo 1"
+date: "18/6/2020"
+output: html_document
+---
+# TallerA
+
+## Ejercicio 8:
+
+```{r echo=FALSE, include=FALSE}
+source("TallerA/TallerA/Script/TallerA.R")
+
+```
+
+### Literal c):
+
+```{r echo=FALSE}
+plot(y)
+
+```
+
+Como podemos ver, al menos en dos dimensiones no se observa problemas de aleatoridad, pero hay que tener en cuenta que si se grafican tripletas de los gráficos, se podrá observar hiperplanos paralelos.
+
+### Literal d):
+
+```{r echo=FALSE}
+hist(as.numeric(x)) # Se grafícan los p-valor
+hist(as.numeric(z)) # Se grafícan los estadísticos
+
+```
+
+Como se puede ver en el contraste realizado, tanto el p-valor como el estadístico, siguen las distribuciones que se supone que deberían seguir, por lo que sería correcto considerar independencia entre generaciones para cada 10 datos.
+
+```{r echo=FALSE}
+cat("Proporcion de rechazos al 1% =", mean(x < 0.01), "\n") # Para alfa 0.01
+cat("Proporcion de rechazos al 5% =", mean(x < 0.05), "\n") # Para alfa 0.05
+cat("Proporcion de rechazos al 10% =", mean(x < 0.1), "\n") # Para alfa 0.1
+
+```
+
+Podemos notar que hay mas rechazos de los que se supone debería haber, por lo que se puede decir que la prueba es conservadora.
+
+# Taller
+
+```{r echo=FALSE, include=FALSE}
+source("Taller/Taller/Script/SIMULACION_2.R")
+
+```
+
+## Ejercicio 2:
+
+CONTRASTE DE HIPOTESIS
+CUANDO NO SE CUMPLE LA HIPOTESIS NULA
+EN UNA DISTRIBUCION NORMAL CON VARIANZA 36
+H0: Mu=20
+Ha: Mu>20
+
+SE GENERA LA MUESTRA PARA DIFERENTES TAMANOS DE MUESTRA, 10, 20 Y 50 RESPECTIVAMENTE
+PARA REALIZAR EL CONTRASTE SE TOMARA UNA MEDIA MAYOR A LA DE LA HIPOTESIS Mu=25
+
+```{r echo=FALSE}
+hist(p10)
+hist(p20)
+hist(p50)
+
+```
+
+COMO SE PUEDE VER SON HISTOGRAMAS SESGADOS HACIA LA IZQUIERDA, POR LO TANTO HAY QUE RECHAZAR LA HIPOTESIS.
+
+CALCULO DE LA POTENCIA DE LA PRUEBA
+
+```{r echo=FALSE}
+plot(1-pnorm(qnorm(0.95,0,1)-(x-20)*sqrt(10)/6),type="n",ylim=c(0.05,1),       
+     xlim=c(20,30),ylab="Potencia",xlab="Theta",cex.main=1,xaxs="i",bty="n")
+
+# graficos las diferentes curvas de potencia   
+
+curve(1-pnorm(qnorm(0.95,0,1)-(x-20)*sqrt(10)/6,0,1),from=20,to=30,add=T,col=1,lty=1,lwd=2)
+
+curve(1-pnorm(qnorm(0.95,0,1)-(x-20)*sqrt(20)/6,0,1),from=20,to=30,add=T,col=2,lty=2,lwd=2)
+
+curve(1-pnorm(qnorm(0.95,0,1)-(x-20)*sqrt(50)/6,0,1),from=20,to=30,add=T,col=3,lty=3,lwd=2)                                                      
+
+legend("right",,paste("n",c(10,20,50),sep="="),lty=1:3,col=1:3,   
+       title="Alpha=0.05",,bty="n")
+
+```
+
+AQUÍ SE CONCLUYE QUE A MEDIDA QUE AUMENTA EL TAMAÑO DE MUESTRA, AUMENTA LA PROBABILIDAD DE RECHAZAR UNA HIPÓTESIS FALSA.

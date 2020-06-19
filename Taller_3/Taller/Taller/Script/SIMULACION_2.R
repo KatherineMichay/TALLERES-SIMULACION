@@ -1,4 +1,40 @@
 ### EJERCICIO 2:
+###CONTRASTE DE HIPÓTESIS 
+### EN UNA DISTRIBUCION NORMAL CON VARIANZA 36
+### H0: Mu=20
+### Ha: Mu<20
+##contraste para aceptar o rechazar la hipotesis nula
+set.seed(1234)                                                 
+nsim<-1000                                                       
+n<-10                                                             
+#n<-20  
+#n<-50  
+estadistico<-function(x,mu,var){                                      
+  n<-length(x)                                                    
+  xbar<-mean(x)                                                  
+  s<-sqrt(var)  
+  Z<-abs((xbar-mu)/(s/sqrt(n)))
+  p<-2*(1-pnorm(Z))                                              
+}                                                                 
+
+
+mu<-20
+sd<-6
+X<-matrix(rnorm(n*nsim,mu,sd),ncol=nsim,nrow=n)    
+p<-apply(X,2,estadistico,mu=20,var=36)                                   
+hist(p,main=c("Caso1:mu = 20"))  
+
+mu<-30                                                           
+X<-matrix(rnorm(n*nsim,mu,sd),ncol=nsim,nrow=n)                   
+p<-apply(X,2,estadistico,mu=25,var=36)                                  
+hist(p,main=c("Caso2:mu = 30"))     
+
+mu<-10 
+X<-matrix(rnorm(n*nsim,mu,sd),ncol=nsim,nrow=n)                   
+p<-apply(X,2,estadistico,mu=25,var=36)                                  
+hist(p,main=c("Caso2:mu = 10"))    
+
+
 ### CONTRASTE DE HIPOTESIS
 ### CUANDO NO SE CUMPLE LA HIPOTESIS NULA
 ### EN UNA DISTRIBUCION NORMAL CON VARIANZA 36
